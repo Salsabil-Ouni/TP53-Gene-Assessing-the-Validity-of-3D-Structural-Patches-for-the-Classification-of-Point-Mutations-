@@ -1,0 +1,28 @@
+TP53 Structural Hotspot Enrichment — Statistical Report
+========================================================
+
+2×2 Contingency Table (observed counts):
+                          Hotspot   Non-hotspot    Total
+  Pathogenic                  325           286      611
+  Benign                      115           140      255
+  Total                       440           426      866
+
+Expected counts (under H₀):
+  Pathogenic | Hotspot     : 310.44
+  Pathogenic | Non-hotspot : 300.56
+  Benign     | Hotspot     : 129.56
+  Benign     | Non-hotspot : 125.44
+
+Fisher's exact test:
+  OR (Fisher)   = 1.3834
+  p-value       = 3.084558e-02   *
+
+Woolf/logit OR with 95% CI:
+  OR = 1.3834  (95% CI: 1.0316 – 1.8551)
+
+Chi-square test (Pearson, df=1):
+  χ² = 4.7152   p = 2.989628e-02
+
+Relative risk (hotspot vs non-hotspot): 1.1002
+  P(pathogenic | hotspot)     = 0.7386
+  P(pathogenic | non-hotspot) = 0.6714

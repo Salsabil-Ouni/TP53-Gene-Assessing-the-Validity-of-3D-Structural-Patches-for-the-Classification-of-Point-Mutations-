@@ -1,0 +1,7 @@
+group,n_features,auc_roc,auc_pr,f1,delta_auc_vs_seq
+seq_only,4,0.8144,0.8939,0.7976,0.0
+patch_only,10,0.6634,0.7462,0.7558,-0.151
+stability_only,7,0.6076,0.7621,0.7357,-0.2068
+patch+stability,17,0.699,0.8053,0.75,-0.1154
+seq+patch,14,0.8129,0.8729,0.8141,-0.0015
+full_25feat,25,0.8092,0.8756,0.8045,-0.0052

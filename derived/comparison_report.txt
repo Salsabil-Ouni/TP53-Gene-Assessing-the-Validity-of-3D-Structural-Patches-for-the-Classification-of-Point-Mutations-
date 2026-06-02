@@ -1,0 +1,26 @@
+TP53 Structural Patch Model — Comparison with AlphaMissense
+============================================================
+Comparison dataset: 437 variants with AlphaMissense score
+  Pathogenic: 265 (60.6%)
+  Benign    : 172 (39.4%)
+Bootstrap: 1000 iterations, seed=42
+Cross-validation: 5-fold StratifiedGroupKFold (by position)
+
+Model                             AUC             95% CI  AUC-PR   DeLong z   p-value
+-------------------------------------------------------------------------------------
+AlphaMissense                  0.9477    [0.9269–0.9662]  0.9687       —         —   
+Logistic Regression            0.8930    [0.8607–0.9234]  0.9005     -2.853    0.0043
+Random Forest                  0.8896    [0.8564–0.9200]  0.9180     -3.076    0.0021
+Gradient Boosting              0.8845    [0.8529–0.9167]  0.9114     -3.255    0.0011
+Ensemble (RF+GB+SVM)           0.8929    [0.8634–0.9225]  0.9219     -2.905    0.0037
+
+DeLong test: H0 = patch model AUC equals AlphaMissense AUC
+  p < 0.05 → statistically significant difference in AUC
+
+Best patch model: Logistic Regression  (AUC = 0.8930)
+
+Note: AlphaMissense is a large-scale deep learning model trained on
+evolutionary and structural data. Our model uses only local 3D patch
+descriptors without sequence conservation — comparison is intentional,
+as the goal is to assess the independent contribution of structural
+microenvironment features.

@@ -1,0 +1,45 @@
+TP53 VUS Reclassification — Structural Patch Model
+============================================================
+VUS downloaded from ClinVar: 1247 missense VUS
+VUS with structural patch coverage: 1105
+Training set used: 1374 labelled variants (874 pathogenic, 500 benign)
+Model: Ensemble (RF + Gradient Boosting + SVM), full training
+
+Reclassification thresholds:
+  P ≥ 0.70 → Likely pathogenic
+  0.30 < P < 0.70 → Uncertain (remains VUS)
+  P ≤ 0.30 → Likely benign
+
+Results:
+  Likely pathogenic : 471 (42.6%)
+  Uncertain         : 427 (38.6%)
+  Likely benign     : 207 (18.7%)
+
+Top 20 predicted pathogenic VUS:
+  Variant     P(path)  Hotspot   Mean_ΔΔG
+  ------------------------------------------
+  Cys242Phe    0.9831      YES      11.56
+  Gly266Glu    0.9799      YES      14.69
+  Gly105Asp    0.9762      YES       9.40
+  Cys238Tyr    0.9758      YES      14.64
+  Cys141Tyr    0.9752      YES       4.17
+  Gly266Arg    0.9743      YES      14.69
+  Cys135Tyr    0.9739      YES       3.14
+  Thr125Arg    0.9727      YES       6.35
+  Cys242Gly    0.9719      YES      11.56
+  Tyr234Asp    0.9719      YES       3.42
+  Phe109Asn    0.9715      YES       5.63
+  Cys242Ser    0.9707      YES      11.56
+  Tyr126Asp    0.9693      YES       3.40
+  Val274Asp    0.9686      YES       5.76
+  Gly266Val    0.9682      YES      14.69
+  Gly105Arg    0.9681      YES       9.40
+  Tyr205Asp    0.9679      YES       3.70
+  Ile232Asn    0.9678      YES       2.45
+  Phe113Cys    0.9674      YES       4.09
+  Tyr236Asp    0.9674      YES       4.52
+
+Clinical note: These predictions are based solely on structural
+microenvironment features. They should be interpreted alongside
+functional data, family history, and ACMG/AMP criteria before
+clinical use.

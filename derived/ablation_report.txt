@@ -1,0 +1,30 @@
+TP53 Structural Patch — Feature Ablation Report
+======================================================================
+
+Classifier : GradientBoosting (n_estimators=200, max_depth=3, lr=0.05)
+CV         : 5-fold StratifiedGroupKFold (grouped by residue position)
+Variants   : 1,374  (874 pathogenic, 500 benign)
+Imputation : median (for NaN at positions outside FoldX/patch domain)
+
+Feature groups:
+  seq_only       ( 4 feat): ['blosum62_score', 'delta_hydrophobicity', 'delta_size', 'charge_change']
+  patch_only     (10 feat): ['patch_size', 'mean_hydrophobicity', 'frac_positive', 'frac_negative', 'frac_neutral', 'mean_relative_sasa', 'mean_residue_size', 'frac_buried', 'frac_hydrophobic', 'min_dist_dna']
+  stability_only ( 7 feat): ['mean_ddg', 'std_ddg', 'frac_destabilizing', 'max_ddg', 'is_hotspot', 'specific_ddg', 'ddg_target_aa']
+  patch+stability (17 feat)
+  seq+patch       (14 feat)
+  full_25feat     (25 feat)
+
+Group                    Feat  AUC-ROC   AUC-PR     F1  ΔAUC vs seq
+----------------------------------------------------------------------
+  seq_only                  4   0.8144   0.8939 0.7976  ++0.0000
+  patch_only               10   0.6634   0.7462 0.7558  -0.1510
+  stability_only            7   0.6076   0.7621 0.7357  -0.2068
+  patch+stability          17   0.6990   0.8053 0.7500  -0.1154
+  seq+patch                14   0.8129   0.8729 0.8141  -0.0015
+  full_25feat              25   0.8092   0.8756 0.8045  -0.0052
+
+Key comparisons:
+  seq_only     → patch_only     : ΔAUC = -0.1509  (3D structure vs sequence alone)
+  patch_only   → patch+stability: ΔAUC = +0.0355  (adding thermodynamic features to patch)
+  seq+patch    → full_25feat    : ΔAUC = -0.0037  (marginal value of stability when sequence+patch present)
+  seq_only     → full_25feat    : ΔAUC = -0.0052  (total structural contribution over sequence baseline)

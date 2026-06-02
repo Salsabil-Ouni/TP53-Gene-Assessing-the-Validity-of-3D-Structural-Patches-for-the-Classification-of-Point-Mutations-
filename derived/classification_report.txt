@@ -1,0 +1,43 @@
+Patch Classification Results — TP53 Proof of Concept
+========================================================
+Variant-level analysis : 866 variants, 188 unique positions
+Position-level analysis: 188 positions
+Cross-validation       : 5-fold GroupKFold (grouped by position)
+Features               : ['patch_size', 'mean_hydrophobicity', 'frac_positive', 'frac_negative', 'frac_neutral', 'mean_relative_sasa', 'mean_residue_size', 'frac_buried', 'frac_hydrophobic', 'mean_ddg', 'is_hotspot', 'min_dist_dna']
+
+Model                                       AUC      F1
+--------------------------------------------------------
+Full patch + DNA dist (12 feat)          0.5799  0.6543
+Patch without DNA (11 feat)              0.5539  0.6785
+Hotspot membership only (1 feat)         0.5097  0.6185
+Random baseline                          0.4671
+Position-level (no pseudo-rep)           0.6223  0.6860
+
+delta-AUC (DNA feature added)  : +0.0259
+delta-AUC (full vs hotspot-only): +0.0701
+
+Detailed report — Full patch + DNA (variant level):
+              precision    recall  f1-score   support
+
+      Benign       0.35      0.54      0.42       255
+  Pathogenic       0.75      0.58      0.65       611
+
+    accuracy                           0.57       866
+   macro avg       0.55      0.56      0.54       866
+weighted avg       0.63      0.57      0.59       866
+
+
+Feature coefficients:
+            feature  coefficient
+       min_dist_dna    -0.316374
+   frac_hydrophobic    -0.304964
+      frac_negative    -0.224346
+mean_hydrophobicity     0.172507
+       frac_neutral     0.166933
+         is_hotspot     0.131343
+        frac_buried     0.122223
+  mean_residue_size     0.088153
+           mean_ddg    -0.074711
+         patch_size    -0.068454
+      frac_positive    -0.042125
+ mean_relative_sasa     0.039541
